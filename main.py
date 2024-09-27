@@ -2,9 +2,6 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.uix.filechooser import FileChooserListView
-from kivy.uix.popup import Popup
 from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.image import Image
@@ -12,6 +9,8 @@ from kivy.uix.image import Image
 from about_screen import AboutScreen
 from bar_chart_screen import BarChartWidget
 from file_screen import FileScreen
+
+arrToSort = [386, 235, 51, 200, 471, 339, 450, 117, 135, 150, 224, 419, 43, 378, 313, 44, 344, 106, 93, 36, 369, 262, 28, 401, 326, 245, 152, 315, 125, 220, 212, 354, 107, 388, 300, 193, 487, 184, 426, 293, 166, 223, 298, 356, 219, 380, 495, 130, 391, 334] 
 
 class NavigationScreen(Screen):
     def __init__(self, **kwargs):
@@ -21,7 +20,7 @@ class NavigationScreen(Screen):
         main_layout = FloatLayout()
         
         # Добавляем фоновое изображение
-        background = Image(source='space.png', allow_stretch=True, keep_ratio=False)
+        background = Image(source='space.png')
         main_layout.add_widget(background)
         
         # Инициализация ScreenManager
@@ -34,7 +33,7 @@ class NavigationScreen(Screen):
 
         # Создаем экраны
         screen1 = Screen(name='screen1')
-        screen1.add_widget(BarChartWidget(data=[1, 2, 3, 4, 5]))
+        screen1.add_widget(BarChartWidget(data=arrToSort))
 
         screen2 = Screen(name='screen2')
         screen2.add_widget(FileScreen(name='file_screen'))
@@ -98,6 +97,6 @@ class MyApp(App):
 
 
 if __name__ == "__main__":
-    # Устанавливаем размеры окна для тестирования на ПК (если нужно)
+    # Устанавливаем размеры окна для тестирования на ПК
     Window.size = (750/2, 1334/2)
     MyApp().run()
