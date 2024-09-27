@@ -1,3 +1,6 @@
 .venv/
 __pycache__/
 test.py
+arrayUnsorted10
+arraySorted10
+arrayUnsorted100

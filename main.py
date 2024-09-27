@@ -10,8 +10,6 @@ from about_screen import AboutScreen
 from bar_chart_screen import BarChartWidget
 from file_screen import FileScreen
 
-arrToSort = [386, 235, 51, 200, 471, 339, 450, 117, 135, 150, 224, 419, 43, 378, 313, 44, 344, 106, 93, 36, 369, 262, 28, 401, 326, 245, 152, 315, 125, 220, 212, 354, 107, 388, 300, 193, 487, 184, 426, 293, 166, 223, 298, 356, 219, 380, 495, 130, 391, 334] 
-
 class NavigationScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -33,10 +31,10 @@ class NavigationScreen(Screen):
 
         # Создаем экраны
         screen1 = Screen(name='screen1')
-        screen1.add_widget(BarChartWidget(data=arrToSort))
+        screen1.add_widget(BarChartWidget(data=FileScreen.arr_to_sort))
 
         screen2 = Screen(name='screen2')
-        screen2.add_widget(FileScreen(name='file_screen'))
+        screen2.add_widget(FileScreen(arr_to_sort=FileScreen.arr_to_sort, name='file_screen'))
 
         screen3 = Screen(name='screen3')
         screen3.add_widget(AboutScreen(name="image"))

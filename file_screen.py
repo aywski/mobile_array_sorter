@@ -6,10 +6,11 @@ from kivy.uix.label import Label
 from plyer import filechooser
 
 class FileScreen(Screen):
-    def __init__(self, **kwargs):
+    arr_to_sort = [] 
+    def __init__(self, arr_to_sort, **kwargs):
         super(FileScreen, self).__init__(**kwargs)
         
-        layout = BoxLayout(orientation='vertical', padding = [20, 20, 20, 20])
+        layout = BoxLayout(orientation='vertical', padding=[20, 20, 20, 20])
         
         load_button = Button(text='Load File')
         load_button.bind(on_release=self.open_filechooser)
@@ -32,6 +33,18 @@ class FileScreen(Screen):
     def load_file(self, selection):
         if selection:
             self.file_path = selection[0]
+            try:
+                with open(self.file_path, 'r') as file:
+                    content = file.read()
+                    # Предполагаем, что содержимое файла – это числа, разделенные запятыми
+                    self.arr_to_sort[:] = list(map(int, content.split(' ')))  # Обновляем arrToSort
+
+                    bar_chart_widget = self.parent.parent.get_screen('screen1').children[0]  # Получаем BarChartWidget
+                    bar_chart_widget.update_data(self.arr_to_sort)  # Обновляем данные в BarChartWidget
+
+            except Exception as e:
+                self.content_label.text = f"Error reading file: {e}"
+
     
     def show_content(self, instance):
         if self.file_path:
