@@ -18,7 +18,8 @@ class NavigationScreen(Screen):
         main_layout = FloatLayout()
         
         # Добавляем фоновое изображение
-        background = Image(source='space.png')
+        background = Image(source='space.png', fit_mode="fill")
+        background.size_hint = (1, 1) 
         main_layout.add_widget(background)
         
         # Инициализация ScreenManager
