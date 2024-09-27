@@ -68,7 +68,7 @@ class BarChartWidget(Screen):
                 elif highlight_indices and i in highlight_indices:
                     Color(1, 0, 0, 1)
                 else:
-                    Color(0, 0, 1, 1)
+                    Color(1, 1, 1, 1)
                 
                 bar_height = (value / max_value) * (self.chart_widget.height - self.padding[1] - self.padding[3])
                 
